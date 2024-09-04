@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpRequestService } from '../../services/http-request.service';
+import { People } from '../../interface/data';
 
 @Component({
   selector: 'app-http-request',
@@ -10,7 +11,7 @@ import { HttpRequestService } from '../../services/http-request.service';
 })
 export class HttpRequestComponent {
   loading!: boolean;
-  result!: string;
+  result$!: People[];
   error!: null;
   // httpService: any;
 
@@ -18,20 +19,26 @@ export class HttpRequestComponent {
     private httpService: HttpRequestService,
   ) {
     this.makeRequest(); // for development testing
+    // this.httpService.request().subscribe(val => console.log(val))
+    
   };
 
 
   makeRequest() {
     this.loading = true;
-    // this.result = 'null';
+    // this.result$ = 'null';
     // this.error = null;
 
-    this.httpService.httpRequest('Sample Data').subscribe({
+    const data = this.httpService.request();
+    data.subscribe({
       next: (data) => {
-        this.result = data;
+        console.log(this.error)
+        this.result$ = data;
         this.loading = false;
+        console.log(data);
       },
       error: (err) => {
+        console.log(this.result$)
         this.error = err.message;
         this.loading = false;
       }

@@ -1,0 +1,24 @@
+{
+    "people": [
+        {"name": "Mary", "gender": "female"},
+        {"name": "Evelyn", "gender": "female"},
+        {"name": "Grace", "gender": "female"},
+        {"name": "Ines", "gender": "female"},
+        {"name": "Caleb", "gender": "male"},
+        {"name": "Gerard", "gender": "male"},
+        {"name": "Ajeyi", "gender": "female"}
+    ],
+
+    "animals": [
+        {"name": "Lion", "family": "Felidae (Cat Family)"},
+        {"name": "Elephant ", "family": "Elephantidae  (Elephant Family)"},
+        {"name": "Gray Wolf", "family": "Canidae  (Dog Family)"},
+        {"name": "Giraffe", "family": "Giraffidae (Giraffe Family)"},
+        {"name": "Kangaroo", "family": "Macropodidae (Kangaroo Family)"},
+        {"name": "Lion", "family": "Felidae (Cat Family)"},
+        {"name": "Lion", "family": "Felidae (Cat Family)"},
+        {"name": "Lion", "family": "Felidae (Cat Family)"},
+        {"name": "Lion", "family": "Felidae (Cat Family)"},
+        {"name": "Lion", "family": "Felidae (Cat Family)"}
+    ]
+}

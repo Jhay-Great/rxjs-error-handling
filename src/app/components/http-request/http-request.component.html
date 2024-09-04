@@ -2,6 +2,24 @@
     Http Request Error Handling
 </h1>
 
-<p>
-    {{ result }}
-</p>
+@if (loading) {
+    <p>
+        loading data...
+    </p>
+} @else {
+    @if (result$) {
+        @for (result of result$; track $index) {
+            <p>
+                {{ result.name }}
+            </p>
+        
+        }
+
+    }
+    @if (error) {
+        <p>
+            {{ error }}
+        </p>
+    }
+
+}
