@@ -16,7 +16,9 @@ export class HttpRequestComponent {
 
   constructor (
     private httpService: HttpRequestService,
-  ) {};
+  ) {
+    this.makeRequest(); // for development testing
+  };
 
 
   makeRequest() {
