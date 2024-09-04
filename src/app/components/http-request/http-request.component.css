@@ -70,7 +70,7 @@ button:hover {
 
 .error {
     text-align: center;
-    font-size: .8rem;
+    font-size: clamp(.8rem, 3vw, 2rem);
     color: #f22f2f;
 }
 
