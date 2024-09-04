@@ -2,10 +2,13 @@
     Http Request Error Handling
 </h1>
 
+<button (click)="makeRequest()">
+    load data
+</button>
+
 @if (loading) {
-    <p>
-        loading data...
-    </p>
+    <div class="loader"></div>
+    
 } @else {
     @if (result$) {
         @for (result of result$; track $index) {

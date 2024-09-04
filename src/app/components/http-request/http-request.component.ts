@@ -18,7 +18,7 @@ export class HttpRequestComponent {
   constructor (
     private httpService: HttpRequestService,
   ) {
-    this.makeRequest(); // for development testing
+    // this.makeRequest(); // for development testing
     // this.httpService.request().subscribe(val => console.log(val))
     
   };
@@ -26,8 +26,8 @@ export class HttpRequestComponent {
 
   makeRequest() {
     this.loading = true;
-    // this.result$ = 'null';
-    // this.error = null;
+    this.result$ = [];
+    this.error = null;
 
     const data = this.httpService.request();
     data.subscribe({
@@ -35,12 +35,14 @@ export class HttpRequestComponent {
         // console.log(this.error)
         this.result$ = data;
         this.loading = false;
+        this.error = null;
         // console.log(data);
       },
       error: (err) => {
         console.log(err)
         this.error = err.message;
         this.loading = false;
+        this.result$ = [];
       }
     });
   }
