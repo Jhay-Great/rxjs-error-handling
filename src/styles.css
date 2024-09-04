@@ -11,6 +11,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #e0e0e0;
+    color: #242424;
 }
 
 
@@ -18,4 +20,6 @@ body {
 app-root {
     width: min(700px, 100%);
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }

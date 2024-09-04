@@ -1,28 +1,47 @@
-<h1>
-    Http Request Error Handling
-</h1>
-
-<button (click)="makeRequest()">
-    load data
-</button>
-
-@if (loading) {
-    <div class="loader"></div>
+<header class="main-header">
+    <h1>
+        Http Request Error Handling
+    </h1>
     
-} @else {
-    @if (result$) {
-        @for (result of result$; track $index) {
-            <p>
-                {{ result.name }}
-            </p>
+    <button (click)="makeRequest()">
+        load data
+    </button>
+
+</header>
+
+<main>
+    @if (loading) {
+        <div class="loader"></div>
         
+    } @else {
+        @if (result$) {
+            <section class="content">
+                <header class="content-header">
+                    <p>Name</p>
+                    <p>Gender</p>
+                </header>
+                @for (result of result$; track $index) {
+                    <div class="personal">
+                        <p>
+                            {{ result.name }}
+                        </p>
+                        <p>
+                            {{ result.gender }}
+                        </p>
+    
+                    </div>
+                
+                }
+
+            </section>
+    
         }
-
+        @if (error) {
+            <p class="error">
+                {{ error }}
+            </p>
+        }
+    
     }
-    @if (error) {
-        <p>
-            {{ error }}
-        </p>
-    }
 
-}
+</main>
