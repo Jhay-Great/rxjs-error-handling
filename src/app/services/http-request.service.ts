@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, delay, map, Observable, of, retry, tap, throwError } from 'rxjs';
+import { catchError, delay, map, Observable, of, retry, scan, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { People } from '../interface/data';
 // import data from '../../assets/data/data'
@@ -29,6 +29,7 @@ export class HttpRequestService {
     return of(null).pipe(
       delay(1000), 
       tap(() => console.log('initial call to api')),
+      scan((attempts: number) => attempts + 1, 0),
       map(() => {
         if (Math.random() < this.successRate) {
           return data;
