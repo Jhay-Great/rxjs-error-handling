@@ -32,13 +32,13 @@ export class HttpRequestComponent {
     const data = this.httpService.request();
     data.subscribe({
       next: (data) => {
-        console.log(this.error)
+        // console.log(this.error)
         this.result$ = data;
         this.loading = false;
-        console.log(data);
+        // console.log(data);
       },
       error: (err) => {
-        console.log(this.result$)
+        console.log(err)
         this.error = err.message;
         this.loading = false;
       }

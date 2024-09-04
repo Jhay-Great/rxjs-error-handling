@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, delay, map, Observable, of, retry, throwError } from 'rxjs';
+import { catchError, delay, map, Observable, of, retry, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { People } from '../interface/data';
 // import data from '../../assets/data/data'
@@ -9,7 +9,7 @@ import { People } from '../interface/data';
 })
 export class HttpRequestService {
   private successRate = 0.7;
-  private numberOfTries = 3;
+  private numberOfTries = 1;
   private people = [
     {"name": "Mary", "gender": "female"},
     {"name": "Evelyn", "gender": "female"},
@@ -33,6 +33,7 @@ export class HttpRequestService {
   private httpRequest<T>(data: T): Observable<T> {
     return of(null).pipe(
       delay(1000), // Simulate 1 second of network latency
+      tap(() => console.log('initial call to api')),
       map(() => {
         if (Math.random() < this.successRate) {
           // return this.http.get(`${this.apiUrl}`);
@@ -42,7 +43,9 @@ export class HttpRequestService {
           throw new Error('Failed to fetch data');
         }
       }),
+      tap(data => console.log('on success response: ', data)),
       retry(this.numberOfTries), // Retry mechanism
+      tap(() => console.log(data)),
     catchError(error => {
       console.error('Request failed:', error);
       throw new Error('failed to fetch data, kindly contact admin via www.amalitechtraining.org')
