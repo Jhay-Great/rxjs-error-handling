@@ -33,7 +33,7 @@ export class HttpRequestService {
       scan((attempts: number) => attempts + 1, 0),
       map(() => {
         if (Math.random() < this.successRate) {
-          console.log(this.attempt);
+          console.log('number of tries before success: ', this.attempt);
           this.attempt = 0;
           return data;
         } else {
@@ -51,6 +51,7 @@ export class HttpRequestService {
         console.log('after max tries: ', data)
       }),
     catchError(error => {
+      console.log('number of tries before error: ', this.attempt);
       console.error('Request failed:', error);
       throw new Error('failed to fetch data, kindly contact admin via www.amalitechtraining.org')
     })
