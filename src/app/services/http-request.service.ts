@@ -10,6 +10,7 @@ import { People } from '../interface/data';
 export class HttpRequestService {
   private successRate = 0.7;
   private maxTries = 1;
+  private attempt = 0;
   private people = [
     {"name": "Mary", "gender": "female"},
     {"name": "Evelyn", "gender": "female"},
@@ -32,14 +33,23 @@ export class HttpRequestService {
       scan((attempts: number) => attempts + 1, 0),
       map(() => {
         if (Math.random() < this.successRate) {
+          console.log(this.attempt);
+          this.attempt = 0;
           return data;
         } else {
+          this.attempt++;
           throw new Error('Failed to fetch data');
         }
       }),
-      tap(data => console.log('on success response: ', data)),
+      tap(data => {
+        console.log('on success response: ', data)
+      }),
       retry(this.maxTries),  
-      tap(() => console.log('after max tries: ', data)),
+      tap(() => {
+        // this.attempt++;
+        // console.log(this.attempt);
+        console.log('after max tries: ', data)
+      }),
     catchError(error => {
       console.error('Request failed:', error);
       throw new Error('failed to fetch data, kindly contact admin via www.amalitechtraining.org')

@@ -77,7 +77,7 @@ button:hover {
 
 .loader {
     height: 15px;
-    width: 60px;
+    width: 100px;
     --c:no-repeat repeating-linear-gradient(#0000 0 6px,#000 0 9px,#0000 0 15px);
     background: var(--c), var(--c), var(--c), var(--c);
     background-size: 26% 200%;
